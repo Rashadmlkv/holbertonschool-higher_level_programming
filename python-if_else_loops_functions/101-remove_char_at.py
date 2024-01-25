@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""creates a copy of the string, removing the character at the position n"""
 def remove_char_at(str, n):
+    """creates copy of string, removes character at the position n"""
     if (n < 0):
         return str
     else:
