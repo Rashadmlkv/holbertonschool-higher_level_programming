@@ -1,15 +1,19 @@
 #!/usr/bin/python3
-if (__name__ == "__main__"):
-    from sys import argv
-    leng = len(argv) - 1
+from sys import argv
 
-    if (leng == 0):
-        print("{} arguments.".format(leng))
-    elif(leng == 1):
-        print("{} argument:\n{}: {}".format(leng, leng, argv[1]))
+
+def func():
+    argc = len(argv)
+
+    if argc == 1:
+        print("0 arguments.")
+    elif argc == 2:
+        print("1 argument:\n1: {}".format(argv[1]))
     else:
-        print("{} arguments:".format(leng))
-        j = 1
-        for i in argv[1:]:
-            print("{}: {}".format(j, i))
-            j += 1
+        print("{} arguments:".format(argc - 1))
+        for i in range(1, argc):
+            print("{}: {}".format(i, argv[i]))
+
+
+if __name__ == "__main__":
+    func()
