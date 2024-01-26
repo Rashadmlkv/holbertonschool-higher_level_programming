@@ -14,4 +14,4 @@ if (__name__ == "__main__"):
         j = 1
         for i in sys.argv[1:]:
             print(f"{j}: {i}")
-            j+=1
+            j += 1
