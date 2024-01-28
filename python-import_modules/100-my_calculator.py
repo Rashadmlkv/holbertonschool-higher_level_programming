@@ -4,7 +4,7 @@ import sys
 import calculator_1
 
 
-def func():
+if (__name__ == "__main__"):
     if (len(sys.argv) != 4):
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
@@ -25,9 +25,4 @@ def func():
     else:
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
-
     print("{} {} {} = {}".format(num1, operator, num2, result))
-
-
-if (__name__ == "__main__"):
-    func()
