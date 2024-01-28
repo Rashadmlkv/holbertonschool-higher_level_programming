@@ -1,1 +1,1 @@
-__import__("2-args")
+__import__("4-hidden_discovery")
