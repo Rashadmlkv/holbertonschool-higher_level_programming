@@ -9,7 +9,7 @@ def func():
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
 
-    operator = sys.argv[]
+    operator = sys.argv[2]
     num1 = int(sys.argv[1])
     num2 = int(sys.argv[3])
     result = 0
