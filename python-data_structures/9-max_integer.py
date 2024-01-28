@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
 def max_integer(my_list=[]):
-    maximus = my_list[0]
-
-    if (len(my_list) == 0):
+    if len(my_list) == 0:
         return
 
-    for i in my_list:
-        if (i > maximus):
-            maximus = i
+    mx = my_list[0]
 
-    return maximus
+    for i in range(1, len(my_list)):
+        if my_list[i] > mx:
+            mx = my_list[i]
+    return mx
+
