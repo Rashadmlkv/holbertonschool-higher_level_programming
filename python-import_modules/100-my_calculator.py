@@ -11,7 +11,7 @@ def func():
 
     operator = sys.argv[2]
     num1 = int(sys.argv[1])
-    num2 = int(sys.argv[3])
+    num2 = int(sys.argv[])
     result = 0
 
     if (operator == '+'):
