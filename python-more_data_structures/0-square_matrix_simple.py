@@ -2,9 +2,6 @@
 def square_matrix_simple(matrix=[]):
     matrixclone = []
 
-
-    print(len(matrix))
-    
     for i in range(len(matrix)):
         matrixclone.append([])
         j = 0
