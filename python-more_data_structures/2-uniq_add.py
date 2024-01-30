@@ -4,7 +4,7 @@ def uniq_add(my_list=[]):
 
     if (len(my_list) != 0):
         newlist = set()
-        newlist = set(my_list)
+        newlist = set(my_list.copy())
         num = list(newlist)[0]
 
         for i in list(newlist)[1:]:
