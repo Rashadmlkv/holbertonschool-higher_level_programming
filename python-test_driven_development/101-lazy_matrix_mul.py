@@ -1,56 +1,62 @@
 #!/usr/bin/python3
 """
-lazy matrix multiplication using a module
-more experience with unit testing
+This is the module 101-lazy_matrix_mul.
+It contains one function: 101-lazy_matrix_mul
 """
 
 
-import numpy as np
+import numpy
 
 
 def lazy_matrix_mul(m_a, m_b):
-    """
-    Multiplies two matrices using NumPy.
-
+    """mul m_a by m_b
     Args:
-        m_a (list of lists): The first matrix.
-        m_b (list of lists): The second matrix.
-
-    Returns:
-        list of lists: The result of the matrix multiplication.
+        m_a: the first matrix
+        m_b: the other matrix
     """
-    if not isinstance(m_a, list):
-        raise TypeError("m_a must be a list")
-    if not isinstance(m_b, list):
-        raise TypeError("m_b must be a list")
+    m_a_notempty = True
+    m_b_notempty = True
+    m_a_rect = True
+    m_b_rect = True
+    m_a_num = True
+    m_b_num = True
+    m_a_notscalar = True
+    m_b_notscalar = True
 
-    if not all(isinstance(row, list) for row in m_a):
-        raise TypeError("m_a must be a list of lists")
-    if not all(isinstance(row, list) for row in m_b):
-        raise TypeError("m_b must be a list of lists")
+    for row in m_a:
+        if not isinstance(row, list):
+            m_a_notscalar = False
+        if len(row) != len(m_a[0]):
+            m_a_rect = False
+        for num in row:
+            if not isinstance(num, (int, float)):
+                m_a_num = False
 
-    if not m_a or any(not row for row in m_a):
-        raise ValueError("m_a can't be empty")
-    if not m_b or any(not row for row in m_b):
-        raise ValueError("m_b can't be empty")
+    for row in m_b:
+        if not isinstance(row, list):
+            m_b_notscalar = False
+        if len(row) != len(m_b[0]):
+            m_b_rect = False
+        for num in row:
+            if not isinstance(num, (int, float)):
+                m_b_num = False
 
-    if any(not isinstance(elem, (int, float)) for row in m_a for elem in row):
-        raise TypeError("m_a should contain only integers or floats")
-    if any(not isinstance(elem, (int, float)) for row in m_b for elem in row):
-        raise TypeError("m_b should contain only integers or floats")
+    if not m_a_notscalar:
+        raise TypeError("Scalar operands are not allowed, use '*' instead")
 
-    if any(len(row) != len(m_a[0]) for row in m_a[1:]):
-        raise TypeError("each row of m_a must be of the same size")
+    if not m_b_notscalar:
+        raise TypeError("Scalar operands are not allowed, use '*' instead")
 
-    if any(len(row) != len(m_b[0]) for row in m_b[1:]):
-        raise TypeError("each row of m_b must be of the same size")
+    if not m_a_num:
+        raise TypeError("invalid data type for einsum")
 
-    if len(m_a[0]) != len(m_b):
-        raise ValueError("m_a and m_b can't be multiplied")
+    if not m_b_num:
+        raise TypeError("invalid data type for einsum")
 
-    try:
-        result = np.dot(m_a, m_b)
-    except ValueError:
-        raise ValueError("m_a and m_b can't be multiplied")
+    if not m_a_rect:
+        raise ValueError("setting an array element with a sequence.")
 
-    return result
+    if not m_b_rect:
+        raise ValueError("setting an array element with a sequence.")
+
+    return numpy.matrix(m_a) * numpy.matrix(m_b)
