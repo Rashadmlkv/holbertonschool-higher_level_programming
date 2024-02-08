@@ -7,8 +7,10 @@
 class Rectangle:
     """
         necesen
-    """
+   """
+
     array = ""
+
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
@@ -57,4 +59,4 @@ class Rectangle:
         return self.array
 
     def __repr__(self):
-        return (f"{self.__class__.__name__}({self.width, self.height})"
+        return (f"{self.__class__.__name__}({self.width, self.height})")
