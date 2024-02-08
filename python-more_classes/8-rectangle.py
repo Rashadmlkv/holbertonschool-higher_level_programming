@@ -74,4 +74,6 @@ class Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectange):
             raise TypeError("rect_2 must be an instance of Rectangle")
-        return max((rect_1, rect_2), key=lambda x: x.area())
+        if rect_1.area() < rect_2.area():
+            return rect_2
+        return rect_1
