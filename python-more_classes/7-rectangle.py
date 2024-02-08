@@ -11,7 +11,7 @@ class Rectangle:
 
     array = ""
     number_of_instances = 0
-    print_symbol = "#"
+    Rectangle.print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         self.width = width
@@ -53,7 +53,7 @@ class Rectangle:
 
     def __str__(self):
         self.array = ""
-        if (self.width == 0 or self.height == 0):
+        if (self.width == 0 or self.height =print_symbol= 0):
             return self.array
         for i in range(self.height):
             self.array += (self.print_symbol*self.width)
