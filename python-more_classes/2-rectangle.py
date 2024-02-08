@@ -6,12 +6,12 @@
 
 class Rectangle:
     """
-        salam
+        necesen
     """
 
     def __init__(self, width=0, height=0):
-        self.__width = 0
-        self.__height = 0
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
@@ -19,6 +19,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
+
         if isinstance(value, int) is False:
             raise TypeError("width must be an integer")
         if value < 0:
@@ -35,11 +36,10 @@ class Rectangle:
             raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
+        self.__height = value
 
     def area(self):
-        return self.__width * self.__height
+        return self.width * self.height
 
     def perimeter(self):
-        if self.__width == 0 or self.__height == 0:
-            return 0
-        return 2 * (self.__width + self.__height)
+        return 2 * (self.width + self.height )
