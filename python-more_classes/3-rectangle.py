@@ -6,10 +6,9 @@
 
 class Rectangle:
     """
-        salam
+        necesen
     """
 
-    array = ""
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
@@ -20,6 +19,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
+
         if isinstance(value, int) is False:
             raise TypeError("width must be an integer")
         if value < 0:
@@ -39,26 +39,18 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        return self.width * self.height
+        return self.__width * self.__height
 
     def perimeter(self):
-        if self.width == 0 or self.height == 0:
+        if (self.width == 0 or self.height == 0):
             return 0
         return 2 * (self.width + self.height)
 
     def __str__(self):
         self.array = ""
+        if (self.width == 0 or self.height == 0):
+            return self.array
         for i in range(self.height):
-            self.array += "#"*self.width
             if i != self.height - 1:
-                self.array += "\n"
-        return (f"{self.array}")
-
-    #def __repr__(self):
-    #    for i in range(self.height):
-    #        for j in range(self.width):
-    #            self.array += "#"
-    #        self.array += "\n"
-    #    return (f"{self.array}")
-
-
+                self.array += ("#"*self.width) + "\n"
+        return self.array
