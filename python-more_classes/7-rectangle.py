@@ -7,7 +7,7 @@
 class Rectangle:
     """
         necesen
-   """
+    """
 
     array = ""
     number_of_instances = 0
