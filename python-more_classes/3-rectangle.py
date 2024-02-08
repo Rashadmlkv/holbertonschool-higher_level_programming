@@ -51,6 +51,7 @@ class Rectangle:
         if (self.width == 0 or self.height == 0):
             return self.array
         for i in range(self.height):
+            self.array += ("#"*self.width)
             if i != self.height - 1:
-                self.array += ("#"*self.width) + "\n"
+                self.array += "\n"
         return self.array
