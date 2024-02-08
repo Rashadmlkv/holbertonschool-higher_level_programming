@@ -57,11 +57,4 @@ class Rectangle:
         return self.array
 
     def __repr__(self):
-        self.array = ""
-        if (self.width == 0 or self.height == 0):
-            return self.array
-        for i in range(self.height):
-            self.array += ("#"*self.width)
-            if i != self.height - 1:
-                self.array += "\n"
-        return self.array
+        return (f"{self.__class__.__name__}({self.width, self.height})"
