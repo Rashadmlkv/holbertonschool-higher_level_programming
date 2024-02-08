@@ -59,4 +59,4 @@ class Rectangle:
         return self.array
 
     def __repr__(self):
-        return (f"{self.__class__.__name__}({self.width, self.height})")
+        return (f"{self.__class__.__name__}{self.width, self.height}")
