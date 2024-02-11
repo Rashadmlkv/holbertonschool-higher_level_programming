@@ -2,14 +2,14 @@
 """
     Class Square
 """
-BaseGeometry = __import__('9-rectangle').BaseGeometry
+Rectangle = __import__('9-rectangle').Rectangle
 
 
-class Square(BaseGeometry):
+class Square(Rectangle):
     """ Square class """
 
     def __init__(self, size):
-        BaseGeometry.integer_validator(self, "size", size)
+        Rectangle.integer_validator(self, "size", size)
 
         self.__size = size
 
