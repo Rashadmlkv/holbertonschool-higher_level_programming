@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""
-    writes object to txt file
-"""
+"""Load from json file module"""
+
+
 import json
 
 
 def load_from_json_file(filename):
-    """ returns bytes """
-
-    with open(filename, 'w', encoding='utf-8') as f:
-        return json.load(f)
+    """load from json file function"""
+    with open(filename, encoding="utf-8") as myFile:
+        return json.load(myFile)

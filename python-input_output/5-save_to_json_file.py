@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""
-    writes object to txt file
-"""
+"""Dave to json file module"""
+
+
 import json
 
 
 def save_to_json_file(my_obj, filename):
-    """ returns bytes """
-
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write(str(json.dumps(my_obj)))
+    """Save to json function"""
+    with open(filename, 'w', encoding="utf-8") as myFile:
+        return json.dump(my_obj, myFile)
