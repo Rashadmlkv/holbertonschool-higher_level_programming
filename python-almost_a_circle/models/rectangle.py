@@ -7,28 +7,24 @@ class Rectangle(Base):
     """ Rectangle Class inherits from Base class """
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
         super().__init__(id)
 
     @property
     def getwidth(self, width=0):
-        return self.width
+        return self.__width
 
     @getwidth.setter
     def setwidth(self, width):
-        if width < 0:
-            raise ValueError("Width can not be negative!")
-        self.width = width
+        self.__width = width
 
     @property
     def getheight(self, height=0):
-        return self.height
+        return self.__height
 
     @getheight.setter
     def setheight(self, height):
-        if height < 0:
-            raise ValueError("Width can not be negative!")
-        self.height = height
+        self.__height = height
