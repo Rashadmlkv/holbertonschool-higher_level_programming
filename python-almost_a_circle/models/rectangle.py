@@ -15,20 +15,20 @@ class Rectangle(Base):
 
     @property
     def getwidth(self, width=0):
-        return self.__width
+        return self.width
 
     @getwidth.setter
     def setwidth(self, width):
         if width < 0:
             raise ValueError("Width can not be negative!")
-        self.__width = width
+        self.width = width
 
     @property
     def getheight(self, height=0):
-        return self.__height
+        return self.height
 
     @getheight.setter
     def setheight(self, height):
         if height < 0:
             raise ValueError("Width can not be negative!")
-        self.__height = height
+        self.height = height
