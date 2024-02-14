@@ -70,3 +70,7 @@ class Rectangle(Base):
         """display with #"""
         for i in range(self.height):
             print("#" * self.width)
+
+    def __str__(self):
+        """ print """
+        return (f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}")
