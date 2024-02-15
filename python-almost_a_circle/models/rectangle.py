@@ -95,6 +95,6 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """return fielsds  dict"""
-        tmpdct = {'x': self.x, 'y': self.y, 'id': self.id,\
-'height': self.height, 'width': self.width}
+        tmpdct = {'x': self.x, 'y': self.y, 'id': self.id,
+                  'height': self.height, 'width': self.width}
         return tmpdct
