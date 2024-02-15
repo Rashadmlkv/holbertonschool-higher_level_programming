@@ -83,7 +83,6 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """ learning *args """
-        
         if (len(args) != 0):
             counter = 0
             atrs = ['id', 'width', 'height', 'x', 'y']
