@@ -82,6 +82,7 @@ class Rectangle(Base):
 {self.x}/{self.y} - {self.width}/{self.height}"
 
     def update(self, *args):
+        """ learning *args """
         counter = 0
         atrs = ['id', 'width', 'height', 'x', 'y']
         for arg in args:
