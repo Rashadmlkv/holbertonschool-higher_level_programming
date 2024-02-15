@@ -81,10 +81,15 @@ class Rectangle(Base):
         return f"[Rectangle] ({self.id}) \
 {self.x}/{self.y} - {self.width}/{self.height}"
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """ learning *args """
-        counter = 0
-        atrs = ['id', 'width', 'height', 'x', 'y']
-        for arg in args:
-            setattr(self, atrs[counter], arg)
-            counter += 1
+        
+        if (len(args) != 0):
+            counter = 0
+            atrs = ['id', 'width', 'height', 'x', 'y']
+            for arg in args:
+                setattr(self, atrs[counter], arg)
+                counter += 1
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
