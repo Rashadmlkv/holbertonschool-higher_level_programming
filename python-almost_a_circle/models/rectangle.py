@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3i
 """ Class Rectangle """
 from models.base import Base as Base
 
@@ -80,3 +80,10 @@ class Rectangle(Base):
         """ print """
         return f"[Rectangle] ({self.id}) \
 {self.x}/{self.y} - {self.width}/{self.height}"
+
+    def update(self, *args):
+        counter = 0
+        atrs = ['id', 'width', 'height', 'x', 'y']
+        for arg in args:
+            setattr(self, atrs[counter], arg)
+            counter += 1
