@@ -1,25 +1,31 @@
 #!/usr/bin/python3
-"""
-    Square class
-"""
+"""Document for Module"""
 
 
 class Square:
-    """
-    Square class
-
-    Atributes:
-    size: private instance attribute
-    """
+    """Defines square"""
 
     def __init__(self, size=0):
-        try:
-            if size < 0:
-                raise ValueError("size must be >= 0")
-            self.__size = size
-        except TypeError:
-            raise TypeError("size must be an integer")
+        """Checks size and assigns it
+        to private instance var
+        """
+        Square.checksize(size)
+        self.__size = size
 
     def area(self):
-        return self.__size**2
-    pass
+        """calculates are of square object
+
+        Return:
+        - area of square object
+        """
+        return self.__size ** 2
+
+    @classmethod
+    def checksize(cls, size):
+        """Checks size and raises exception
+        if size doesn't fit expectations
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")

@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-"""
-    io
-"""
+"""This is '0-read_file' module"""
 
 
 def read_file(filename=""):
-    """ read file """
-    with open(filename, 'r', encoding='utf-8') as f:
-        for line in f:
-            print(line, end='')
+    """Opens file, reads it and prints to stdout"""
+
+    with open(filename, "r", encoding="utf-8") as afile:
+        for aline in afile:
+            print(aline, end="")

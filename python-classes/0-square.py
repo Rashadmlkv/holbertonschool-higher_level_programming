@@ -1,12 +1,7 @@
 #!/usr/bin/python3
-"""
-    Square class
-"""
+"""Defines Square class"""
 
 
 class Square:
-    """
-    Square class
-    """
-
+    """Square class document"""
     pass

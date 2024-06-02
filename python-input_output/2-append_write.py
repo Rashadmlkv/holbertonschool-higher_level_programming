@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-"""
-    file write
-"""
+"""This is a ''2-append_write' module"""
 
 
 def append_write(filename="", text=""):
-    """ returns bytes """
+    """opens file and appends into it"""
 
-    with open(filename, 'a', encoding='utf-8') as f:
-        return f.write(text)
+    with open(filename, "a", encoding="utf-8") as afile:
+        return afile.write(text)

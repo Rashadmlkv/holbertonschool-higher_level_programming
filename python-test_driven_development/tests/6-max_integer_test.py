@@ -1,35 +1,33 @@
 #!/usr/bin/python3
-
+"""Unittest for max_integer([..])
+"""
 import unittest
-
-
-max_integer = __import__("6-max_integer").max_integer
+max_integer = __import__('6-max_integer').max_integer
 
 
 class TestMaxInteger(unittest.TestCase):
-    #Positive integers
-    def test_regular_list(self):
-        self.assertEqual(max_integer([1, 2, 3, 4]), 4)
-        self.assertEqual(max_integer([1, 3, 4, 2]), 4)
+    """
+    A class to test a max integer function
+    """
 
-    #None case
-    def test_empty_list(self):
+    def test_max_integer(self):
+        """
+        Test the max integer in a list of integers when the integers
+        are positive or negative numbers
+        """
         self.assertIsNone(max_integer([]))
+        self.assertAlmostEqual(max_integer([1, 2, 3, 4, 5]), 5)
+        self.assertAlmostEqual(max_integer([-4, -3, -2, -1, 0]), 0)
+        self.assertAlmostEqual(max_integer([-90, -120, -150, -180]), -90)
+        self.assertAlmostEqual(max_integer([1.0, 1.5, 1.6, 3.7, 2.3]), 3.7)
+        self.assertAlmostEqual(max_integer([7.7]), 7.7)
 
-    #Negative numbers
-    def test_negative_numbers(self):
-        self.assertEqual(max_integer([-1, -2, -3, -4]), -1)
-        self.assertEqual(max_integer([-1, -3, -4, -2]), -1)
-    
-    #Both negative and positive numbers
-    def test_mixed_numbers(self):
-        self.assertEqual(max_integer([1, -2, 3, -4]), 3)
-        self.assertEqual(max_integer([-1, 2, -3, 4]), 4)
+    def test_wrong_types(self):
+        """
+        Test the max integer with wrong parameters types
+        """
+        with self.assertRaises(TypeError):
+            max_integer(None)
 
-    #Only one element
-    def test_one_element(self):
-        self.assertEqual(max_integer([1]), 1)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        with self.assertRaises(TypeError):
+            max_integer(["Monty", 89, 34, -9.7, "Python"])

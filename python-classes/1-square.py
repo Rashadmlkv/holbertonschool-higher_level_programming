@@ -1,17 +1,13 @@
 #!/usr/bin/python3
-"""
-    Square class
-"""
+"""Defines Square class"""
 
 
 class Square:
-    """
-    Square class
+    """Square class document
 
-    Atributes:
-    size: private instance attribute
-    """
+    Attributes:
+        __size (:obj): private size field
 
+    """
     def __init__(self, size):
         self.__size = size
-    pass

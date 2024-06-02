@@ -1,97 +1,87 @@
 #!/usr/bin/python3
-"""first project of python"""
+"""This is a 'base' module"""
+
 import json
-import turtle
 
 
 class Base:
-    """ Base class """
+    """
+    This class will be the “base” of all other classes
+    in this project. The goal of it is to manage id attribute
+    in all your future classes and to avoid duplicating the
+    same code (by extension, same bugs)
+    """
 
     __nb_objects = 0
-    id = 0
 
     def __init__(self, id=None):
         if id is not None:
             self.id = id
         else:
-            Base.__nb_objects += 1
-            self.id = Base.__nb_objects
-
-    @staticmethod
-    def to_json_string(list_dictionaries):
-        """haliluya"""
-        if list_dictionaries is None or len(list_dictionaries) == 0:
-            return "[]"
-        else:
-            return json.dumps(list_dictionaries)
+            __class__.__nb_objects += 1
+            self.id = __class__.__nb_objects
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Writes the JSON string representation of list_objs to a file"""
-        if list_objs is not None:
-            list_objs = [obj.to_dictionary() for obj in list_objs]
-        filename = cls.__name__ + '.json'
-        with open(filename, 'w', encoding='utf-8') as my_file:
-            my_file.write(cls.to_json_string(list_objs))
+        """
+        writes the JSON string representation of list_objs to a file
+        """
+        dicts_list = []
 
-    @staticmethod
-    def from_json_string(json_string):
-        """ from json string method"""
-        if json_string is None or not json_string:
-            return []
-        return json.loads(json_string)
+        if list_objs is not None:
+            for obj in list_objs:
+                dicts_list.append(obj.to_dictionary())
+
+        json_str = cls.to_json_string(dicts_list)
+
+        filename = f"{cls.__name__}.json"
+        with open(filename, "w", encoding="utf-8") as afile:
+            afile.write(json_str)
 
     @classmethod
     def create(cls, **dictionary):
-        """Create"""
-        if cls.__name__ == 'Rectangle':
-            dummy = cls(1, 2)
-        elif cls.__name__ == 'Square':
-            dummy = cls(1)
+        """
+        Class method that returns an instance with all attributes
+        already set
+        """
+        dummy = cls(1, 1 if len(dictionary) > 1 else 0)
         dummy.update(**dictionary)
         return dummy
 
     @classmethod
     def load_from_file(cls):
-        """Load from file"""
-        filename = cls.__name__ + '.json'
+        """
+        Class method that returns a list of instances
+        """
+        filename = cls.__name__ + ".json"
         try:
-            with open(filename, 'r', encoding='utf-8') as my_file:
-                data = cls.from_json_string(my_file.read())
-            instances = []
-            for i in data:
-                instances.append(cls.create(**i))
-            return instances
-        except IOError:
+            with open(filename, "r", encoding="utf-8") as afile:
+                json_str = afile.read()
+            dict_list = Base.from_json_string(json_str)
+            instance_list = []
+            for dictry in dict_list:
+                obj = cls.create(**dictry)
+                instance_list.append(obj)
+            return instance_list
+        except FileNotFoundError:
             return []
 
     @staticmethod
-    def draw(list_rectangles, list_squares):
-        """Draws all the Rectangles and Squares"""
-        screen = turtle.Screen()
-        screen.setup(width=800, height=600)
+    def to_json_string(list_dictionaries):
+        """
+        Static method that returns the JSON string
+        representation of list_dictionaries
+        """
+        if list_dictionaries is None:
+            return "[]"
+        return json.dumps(list_dictionaries)
 
-        t = turtle.Turtle()
+    @staticmethod
+    def from_json_string(json_string):
+        """
+        returns the list of the JSON string representation json_string
+        """
+        if json_string is None or len(json_string) == 0:
+            return []
 
-        for rect in list_rectangles:
-            t.penup()
-            t.goto(rect.x, rect.y)
-            t.pendown()
-            t.forward(rect.width)
-            t.left(90)
-            t.forward(rect.height)
-            t.left(90)
-            t.forward(rect.width)
-            t.left(90)
-            t.forward(rect.height)
-            t.left(90)
-
-        for square in list_squares:
-            t.penup()
-            t.goto(square.x, square.y)
-            t.pendown()
-            for _ in range(4):
-                t.forward(square.width)
-                t.left(90)
-
-        screen.mainloop()
+        return json.loads(json_string)

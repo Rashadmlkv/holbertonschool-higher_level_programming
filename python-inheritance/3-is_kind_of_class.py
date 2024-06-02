@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 """
-    exactly instance of class
+This is the "3-is_kind_of_class" module.
 """
 
 
 def is_kind_of_class(obj, a_class):
-    """
-        true if it is , false otherwise
-    """
-
+    """is kind of"""
     return isinstance(obj, a_class)

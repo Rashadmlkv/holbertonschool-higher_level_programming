@@ -1,12 +1,9 @@
 #!/usr/bin/python3
-'''
-    Am da best
-'''
+"""
+Module that defines Rectangle class
+"""
 
 
 class Rectangle:
-    '''
-        U r da best
-    '''
-
+    """simple Rectangle class"""
     pass

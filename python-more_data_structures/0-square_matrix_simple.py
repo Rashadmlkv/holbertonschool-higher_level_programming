@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 def square_matrix_simple(matrix=[]):
-    matrixclone = []
-
-    for i in range(len(matrix)):
-        matrixclone.append([])
-        j = 0
-        while j < len(matrix[i]):
-            matrixclone[i].append(matrix[i][j]**2)
-            j += 1
-    return matrixclone
+    new_arr = []
+    for arr in matrix:
+        new_arr.append(list(map(lambda x: pow(x, 2), arr)))
+    return new_arr

@@ -1,100 +1,179 @@
-#!/usr/bin/python3i
-""" Class Rectangle """
-from models.base import Base as Base
+#!/usr/bin/python3
+"""This is a 'rectangle' module"""
+
+
+from .base import Base
 
 
 class Rectangle(Base):
-    """ Rectangle Class inherits from Base class """
+    """
+    class Rectangle that inherits from Base
+    Private instance attributes, each with its own
+    public getter and setter
+    """
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """initialize"""
-        super().__init__(id)
+        """
+        Constructor method to initialize a Rectangle instance
+        with specified width, height, x, y, and optional id.
+        """
         self.width = width
         self.height = height
         self.x = x
         self.y = y
 
+        super().__init__(id)
+
+    def __str__(self):
+        """
+        Method that returns:
+        [Rectangle] (<id>) <x>/<y> - <width>/<height>
+        """
+        classname = self.__class__.__name__
+        return f"[{classname}] ({self.id})"\
+               f" {self.x}/{self.y} - {self.width}/{self.height}"
+
+    def to_dictionary(self):
+        """
+        Method that returns the dictionary representation of a Rectangle
+        """
+        return {"id": self.id, "width": self.width, "height": self.height,
+                "x": self.x, "y": self.y}
+
+    def update(self, *args, **kwargs):
+        """
+        Method that assigns an argument to each attribute
+        """
+        if len(args) > 0:
+            self.__update_fields_from_arr_dict(args)
+        else:
+            self.__update_fields_from_arr_dict(kwargs)
+
+    def display(self):
+        """
+        Method to print in stdout the Rectangle instance
+        with the character #
+        """
+        print("\n" * self.y, end="")
+        for i in range(self.height):
+            print(" " * self.x, "#" * self.width, sep="")
+
+    def area(self):
+        """
+        Method to calculate and return the area of the rectangle.
+        """
+        return self.width * self.height
+
+    @staticmethod
+    def check_type(field, value):
+        """
+        Static method to check if the given value is of type int,
+        raising a TypeError if not.
+        """
+        if type(value) is not int:
+            raise TypeError(f"{field} must be an integer")
+
+    @staticmethod
+    def check_size_value(field, value):
+        """
+        Static method to check if the given value is lower
+        than or equal to 0, raising a ValueError.
+        """
+        if value <= 0:
+            raise ValueError(f"{field} must be > 0")
+
+    @staticmethod
+    def check_coordnte_value(field, value):
+        """
+        Static method to check if the given value is lower than 0,
+        raising a ValueError.
+        """
+        if value < 0:
+            raise ValueError(f"{field} must be >= 0")
+
+    def __update_fields_from_arr_dict(self, collection):
+        """
+        Method that dynamically updates fields of instance
+        using collection (tuple, dict)
+        """
+        atts = {"id": "self.id", "width": "self.width",
+                "height": "self.height", "x": "self.x", "y": "self.y"}
+
+        if type(collection) is tuple:
+            dict_values = list(atts.values())
+            cltn_length = len(collection)
+
+            for i in range(cltn_length):
+                exec(f"{dict_values[i]}={collection[i]}")
+
+        elif type(collection) is dict:
+            for k, v in collection.items():
+                exec(f"{atts[k]}={v}")
+
     @property
     def width(self):
+        """
+        Getter method to retrieve the width of the rectangle.
+        """
         return self.__width
-
-    @width.setter
-    def width(self, width):
-        if not isinstance(width, int):
-            raise TypeError("width must be an integer")
-        if width <= 0:
-            raise ValueError("width must be > 0")
-        self.__width = width
 
     @property
     def height(self):
+        """
+        Getter method to retrieve the height of the rectangle.
+        """
         return self.__height
-
-    @height.setter
-    def height(self, height):
-        if not isinstance(height, int):
-            raise TypeError("height must be an integer")
-        if height <= 0:
-            raise ValueError("height must be > 0")
-        self.__height = height
 
     @property
     def x(self):
+        """
+        Getter method to retrieve the x-coordinate of the rectangle.
+        """
         return self.__x
-
-    @x.setter
-    def x(self, x):
-        if not isinstance(x, int):
-            raise TypeError("x must be an integer")
-        if x < 0:
-            raise ValueError("x must be >= 0")
-        self.__x = x
 
     @property
     def y(self):
+        """
+        Getter method to retrieve the y-coordinate of the rectangle.
+        """
         return self.__y
 
+    @x.setter
+    def x(self, value):
+        """
+        Setter method for the x-coordinate, performing type and
+        coordinate value checks before setting the value.
+        """
+        self.check_type("x", value)
+        self.check_coordnte_value("x", value)
+        self.__x = value
+
     @y.setter
-    def y(self, y):
-        if not isinstance(y, int):
-            raise TypeError("y must be an integer")
-        if y < 0:
-            raise ValueError("y must be >= 0")
-        self.__y = y
+    def y(self, value):
+        """
+        Setter method for the y-coordinate, performing type and
+        coordinate value checks before setting the value.
+        """
+        self.check_type("y", value)
+        self.check_coordnte_value("y", value)
+        self.__y = value
 
-    def area(self):
-        """ area """
-        return self.width * self.height
+    @width.setter
+    def width(self, value):
+        """
+        Setter method for the width, performing type and size
+        value checks before setting the value.
+        """
+        self.check_type("width", value)
+        self.check_size_value("width", value)
+        self.__width = value
 
-    def display(self):
-        """display with #"""
-        if self.y != 0:
-            for _ in range(self.y):
-                print()
-        for i in range(self.height):
-            for _ in range(self.x):
-                print(" ", end="")
-            print("#" * self.width)
-
-    def __str__(self):
-        """ print """
-        return f"[Rectangle] ({self.id}) \
-{self.x}/{self.y} - {self.width}/{self.height}"
-
-    def update(self, *args, **kwargs):
-        """ learning *args """
-        if (len(args) != 0):
-            counter = 0
-            atrs = ['id', 'width', 'height', 'x', 'y']
-            for arg in args:
-                setattr(self, atrs[counter], arg)
-                counter += 1
-        else:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-
-    def to_dictionary(self):
-        """return fielsds  dict"""
-        tmpdct = {'x': self.x, 'y': self.y, 'id': self.id,
-                  'height': self.height, 'width': self.width}
-        return tmpdct
+    @height.setter
+    def height(self, value):
+        """
+        Setter method for the height, performing type and size
+        value checks before setting the value.
+        """
+        self.check_type("height", value)
+        self.check_size_value("height", value)
+        self.__height = value

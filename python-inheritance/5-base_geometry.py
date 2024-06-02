@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-"""
-    function
-"""
+"""This is a '5-base_geometry' module"""
 
 
 class BaseGeometry:
-    """ base geometry """
+    """BaseGeometry class document string"""
     pass

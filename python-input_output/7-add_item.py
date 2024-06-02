@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-"""7-add_item module"""
+"""This is a '7-add_item' module"""
 
-
-import sys
-
-
+from sys import argv
 save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
 load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
-json_name = 'add_item.json'
+
+filename = "add_item.json"
+
+new_list_elements = argv[1:]
 
 try:
-    my_list = load_from_json_file(json_name)
-except Exception as ex:
-    my_list = []
-for i in sys.argv[1:]:
-    my_list.append(i)
+    original_list = load_from_json_file(filename)
+except FileNotFoundError:
+    original_list = []
 
-save_to_json_file(my_list, json_name)
+for item in new_list_elements:
+    original_list.append(item)
+
+save_to_json_file(original_list, filename)

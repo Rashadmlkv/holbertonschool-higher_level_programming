@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """
-    inherit directly or not
+This is the "4-inherits_from" module.
 """
 
 
 def inherits_from(obj, a_class):
-    """
-        true false
-    """
-    return isinstance(obj, a_class) and type(obj) is not a_class
+    """inherits from"""
+    if not type(obj) is a_class:
+        return isinstance(obj, a_class)
+
+    return False

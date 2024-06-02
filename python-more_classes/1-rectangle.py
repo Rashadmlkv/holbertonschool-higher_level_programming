@@ -1,39 +1,41 @@
 #!/usr/bin/python3
-"""
-    salam
-"""
+"""A Module Rectangle that defines a rectangle class"""
 
 
 class Rectangle:
-    """
-        necesen
-    """
+    """Rectangle class"""
 
     def __init__(self, width=0, height=0):
+        """Initializes object"""
         self.width = width
         self.height = height
 
     @property
     def width(self):
+        """Retrieves private instance attribute width"""
         return self.__width
-
-    @width.setter
-    def width(self, value):
-
-        if isinstance(value, int) is False:
-            raise TypeError("width must be an integer")
-        if value < 0:
-            raise ValueError("width must be >= 0")
-        self.__width = value
 
     @property
     def height(self):
+        """Retrieves private instance attribute height"""
         return self.__height
+
+    @width.setter
+    def width(self, value):
+        """Sets private instance attr. width"""
+        self.checkvalue("width", value)
+        self.__width = value
 
     @height.setter
     def height(self, value):
-        if isinstance(value, int) is False:
-            raise TypeError("height must be an integer")
-        if value < 0:
-            raise ValueError("height must be >= 0")
+        """Sets private instance attr. height"""
+        self.checkvalue("height", value)
         self.__height = value
+
+    @staticmethod
+    def checkvalue(attname, value):
+        """Checks value and raises exception if there is a mistake"""
+        if not isinstance(value, int):
+            raise TypeError(f"{attname} must be an integer")
+        if value < 0:
+            raise ValueError(f"{attname} must be >= 0")

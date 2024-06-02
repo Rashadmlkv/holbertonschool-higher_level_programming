@@ -1,19 +1,20 @@
 #!/usr/bin/python3
-"""Student module"""
+"""This is a '9-student' module"""
 
 
 class Student:
-    """student class"""
+    """defines a student"""
+
     def __init__(self, first_name, last_name, age):
-        """init module"""
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """To json function"""
-        if attrs is None:
-            return vars(self)
-        else:
-            r = {x: getattr(self, x) for x in attrs if hasattr(self, x)}
-            return r
+        dict_list = self.__dict__.items()
+        if type(attrs) is list and all(type(i) is str for i in attrs):
+            return {
+                    key: value for key, value in dict_list if key in attrs
+                    }
+
+        return self.__dict__
